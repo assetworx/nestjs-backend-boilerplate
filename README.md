@@ -26,7 +26,7 @@ Currently, two of the many available Passport authentication strategies are prov
 
 The `local` strategy is only used for one route: the login route, which transforms a `(username, password)` tuple into a valid [JSON Web Token](https://jwt.io/) should it be valid. _(In this boilerplate, validity is checked by means of a users list; obviously, in your project, you must connect to a database instead.)_. 
 
-For all other routes, it is advised to _not_ use `local` authentication simply because it returns the JWT. Rather, use the `JWT` based strategy, which currently accepts the JWT as an Authorization Bearer Token.
+For all other routes, it is advised to _not_ use `local` authentication simply because login returns a JWT and usernames/passwords should be provided as infrequently as possible. Rather, use the `JWT` based strategy, which currently accepts the JWT as an Authorization Bearer Token.
 
 Also feel free to implement other [Passport Strategies](http://www.passportjs.org/packages/) by creating your own [NestJS Auth Strategies](https://docs.nestjs.com/techniques/authentication).
 
