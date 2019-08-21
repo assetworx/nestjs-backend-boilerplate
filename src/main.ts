@@ -2,8 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { constants } from './constants';
 import * as helmet from 'helmet';
-import * as csurf from 'csurf';
-import * as cookieParser from 'cookie-parser';
+import * as rateLimit from 'express-rate-limit';
 
 async function bootstrap() {
   // Create the app
@@ -20,10 +19,13 @@ async function bootstrap() {
   app.use(helmet());
   // Enable Cross-origin resource sharing
   app.enableCors();
-  // Enable CSURF aganst cross-site request forgery
-  // Requires cookie parsing since we do not use any session store by default.
-  app.use(cookieParser());
-  app.use(csurf({ cookie: true }));
+  // Rate limiting
+  app.use(
+    rateLimit({
+      windowMs: constants.rateLimitWindow,
+      max: constants.rateLimitMaxReqPerWindow,
+    }),
+  );
   // Start listening on port number defined in constants
   await app.listen(constants.httpPort);
 }

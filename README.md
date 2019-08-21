@@ -85,13 +85,13 @@ The `./example-auth/example-auth.controller` comes with examples of authenticati
 This boilerplate backend deploys various measures against security vulnerabilities. We use multiple packages for this:
 
 * `helmet`, which groups various security vulnerability mitigations.
-* `csurf`, which protects you against cross-site request forgery.
+* `express-rate-limit`, for rate limiting requests.
 * `cors`, for which we use NestJS's built-in facilities.
 
 These types of attacks are covered by these packages:
 
 * Cross origin resource sharing misuse
-* Cross-site request forgery
+* Rate limit abuse.
 * DNS Prefetch Control misuse
 * Clickjacking
 * Package-powered-by exploits
