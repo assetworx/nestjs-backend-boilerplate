@@ -128,7 +128,7 @@ For production mode, see [Production build: Docker container](#production-build-
 
 ### Production mode
 #### Harnessing the power of Docker
-This repository provides a Docker Compose file which is configured to start the backend at port `3000` together with an empty PostgreSQL database that runs on port `5432` and harnesses a `bridge` network to allow the backend to reach it. The application itself runs in [pm2](http://pm2.keymetrics.io/docs/usage/environment/).
+This repository provides a Docker Compose file which is configured to start the backend at port `3000` together with an empty PostgreSQL database that runs on port `5432` and harnesses a `bridge` network to allow the backend to reach it. The application itself runs in [pm2](http://pm2.keymetrics.io/).
 
 In order to run this, you'll need [yarn](https://yarnpkg.com/en/docs/install) as well as [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
