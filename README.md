@@ -101,6 +101,9 @@ These types of attacks are covered by these packages:
 * (Certain) XSS attacks.
 
 ## Running the boilerplate
+### Providing database clients for the backend
+Todo.
+
 ### Developer mode
 Please execute these steps to run the NestJS boilerplate. Note that by default, we expect users to install dependencies with `yarn`. Hence, a yarn package lock file is provided in the repository. However, should you wish to use npm instead, this is possible by deleting the lockfile first and subsequently using `npm` commands.
 
@@ -121,7 +124,27 @@ For production mode, see [Production build: Docker container](#production-build-
 [Help, my `yarn` commands do not work!](https://yarnpkg.com/en/docs/install)
 
 ### Production mode
-To do.
+#### Harnessing the power of Docker
+This repository provides a Docker Compose file which is configured to start the backend at port `3000` together with an empty PostgreSQL database that runs on port `5432` and harnesses a `bridge` network to allow the backend to reach it. The API itself runs in [pm2](http://pm2.keymetrics.io/docs/usage/environment/).
+
+In order to run this, you'll need [yarn](https://yarnpkg.com/en/docs/install) as well as [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
+
+To run it in production mode:
+
+* `yarn build` - transpile TypeScript into JavaScript into the `./dist` folder
+* `docker-compose build` - build the Docker image for the backend
+* `docker-compose up -d` - run the database and backend in the background (`-d`).
+
+The backend should now be reachable at `http://localhost:5432`. A PostgreSQL database should now be accessible from the backend container at `host = database; port = 5432`.
+Please edit the compose file providing the PostgreSQL database password or, preferably, add this to an `.env` file before running `docker-compose` commands.
+
+#### Running it elsewhere
+You are also free to run the API elsewhere, without Docker, e.g. directly on some host system. You may find the following pointers useful:
+* `yarn build` transpiles the TypeScript backend code into executable JavaScript into the `./dist` folder.
+* You could then do something like:
+  * `node ./dist/main.js` (if you provide the required environment variables `PORT` and `POSTGRES_CLIENTS` yourself with e.g. `dotenv`; we **discourage** this for production - [read why here](https://www.freecodecamp.org/news/you-should-never-ever-run-directly-against-node-js-in-production-maybe-7fdfaed51ec6/)).
+  * `pm2 ./dist/backend.js` if you provide the required environment variables `PORT` and `POSTGRES_CLIENTS` yourself.
+  * `pm2 ./dist/pm2.config.js` if you wish to run with the environment variables as configured for `pm2` usage.
 
 ## License
 The `nestjs-backend-boilerplate` is licensed under the [MIT License](./LICENSE). You are free to use the boilerplate code commercially, to modify it, to distribute it and to use it privately. However, this requires that the limitations and other license conditions as provided by the license are respected.
