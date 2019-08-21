@@ -33,6 +33,6 @@ To do.
 To do.
 
 ## License
-The `nestjs-backend-boilerplate` is licensed under the [GNU Affero General Public License v3.0](./LICENSE). You are free to use the boilerplate code commercially, to modify it, to distribute it. Additionally, patent and private use is granted. However, this requires that the limitations and other license conditions as provided by the license are respected.
+The `nestjs-backend-boilerplate` is licensed under the [MIT License](./LICENSE). You are free to use the boilerplate code commercially, to modify it, to distribute it and to use it privately. However, this requires that the limitations and other license conditions as provided by the license are respected.
 
-Should you wish to obtain another license, please feel free to get in touch with GSWRX B.V. via `{marcel, christian, albert}@degasfabriek.com`. Please refer to this repository as well as that you request a different license. We will then get back to you as soon as possible.
+Should you wish to obtain another license on the sublicenseable parts of this code, please feel free to get in touch with GSWRX B.V. via `{marcel, christian, albert}@degasfabriek.com`. Please refer to this repository as well as that you request a different license. We will then get back to you as soon as possible.
