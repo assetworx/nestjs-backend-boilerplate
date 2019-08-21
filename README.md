@@ -1,4 +1,6 @@
 # nestjs-backend-boilerplate
+**Boilerplate code for NestJS backends.**
+
 This repository contains a boilerplate NestJS based backend that by default runs ExpressJS. It is used in the majority of GSWRX projects to ensure that there is substantial overlap between backends within our innovation projects. However, it is licensed to be used in an open source way.
 
 ## Table of contents
