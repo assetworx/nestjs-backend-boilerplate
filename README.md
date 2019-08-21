@@ -37,7 +37,7 @@ Role-based authorization comes implemented by default. It has been created by me
 The `./example-auth/example-auth.controller` comes with examples of authentication and authorization:
 
 * The `getAuthStatus` method, which is accessible at `HTTP GET /example-auth/simple`, performs JWT-based authentication _but no authorization_ by means of the `AuthGuard('jwt')`.
-* The `getStrongAuthStatus` method, accessible at `HTTP GET /example-auth/strong`, performs **both** JWT-based authentication and role-based authorization: it implements an `AuthGuard('jwt')` _and_ the `RoleGuard`. More specifically, it only allows requests to be passed to the route if the user is of role `'admin'`. _(Note that multiple roles at once are supported; in that case, make it e.g. `@Routes('admin, 'normal')`)_ If all routes must be supported, fall back to the previous bullet point and remove the `RoleGuard` and `Routes` decorator altogether.
+* The `getStrongAuthStatus` method, accessible at `HTTP GET /example-auth/strong`, performs **both** JWT-based authentication and role-based authorization: it implements an `AuthGuard('jwt')` _and_ the `RoleGuard`. More specifically, it only allows requests to be passed to the route if the user is of role `'admin'`. _(Note that multiple roles at once are supported; in that case, make it e.g. `@Routes('admin, 'normal')`)_ If all roles must be supported (essentially removing authorization while keeping authentication), fall back to the previous bullet point and remove the `RoleGuard` and `Routes` decorator altogether.
 
 ### Security measures
 This boilerplate backend deploys various measures against security vulnerabilities. We use multiple packages for this:
