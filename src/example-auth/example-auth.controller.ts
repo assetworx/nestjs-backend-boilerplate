@@ -1,9 +1,9 @@
 import { Controller, UseGuards, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ExampleAuthService } from './example-auth.service';
-import { IMessage } from 'src/interfaces/message.interface';
-import { RoleGuard } from 'src/role.guard';
-import { Roles } from 'src/decorators/roles.decorator';
+import { IMessage } from '../interfaces/message.interface';
+import { RoleGuard } from '../role.guard';
+import { Roles } from '../decorators/roles.decorator';
 
 @Controller('example-auth')
 export class ExampleAuthController {

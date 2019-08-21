@@ -1,0 +1,23 @@
+version: '3'
+services:
+  api:
+    container_name: nest-backend
+    build: .
+    restart: always
+    ports:
+      - '3000:3000'
+    networks:
+      - api-db-bridge
+    depends_on:
+      - database
+  database:
+    container_name: pg-database
+    image: postgres:11
+    restart: always
+    networks:
+      - api-db-bridge
+    environment:
+      POSTGRES_PASSWORD: example
+networks:
+  api-db-bridge:
+    driver: bridge

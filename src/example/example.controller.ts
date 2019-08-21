@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ExampleService } from './example.service';
-import { IMessage } from 'src/interfaces/message.interface';
-import { GenericException } from 'src/exceptions/generic.exception';
+import { IMessage } from '../interfaces/message.interface';
+import { GenericException } from '../exceptions/generic.exception';
 
 @Controller('')
 export class ExampleController {
