@@ -14,6 +14,7 @@ async function bootstrap() {
   // - ieNoOpen
   // - noSniff
   // - xssFilter
+  // more info: https://helmetjs.github.io/docs/
   app.use(helmet());
   // Start listening on port number defined in constants
   await app.listen(constants.httpPort);
