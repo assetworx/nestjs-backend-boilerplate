@@ -19,6 +19,48 @@ This repository contains a boilerplate NestJS based backend that by default runs
 
 ## Boilerplate walkthrough
 ### Folder structure
+This overview only shows the most important files.
+
+```
+project
+|   .gitignore
+|   docker-compose.yml
+|   dockerfile
+|   LICENSE
+|   package.json
+|   tslint.json
+|   yarn.lock
+│   README.md
+│   tsconfig.json
+│
+└───node_modules
+└───src
+│   │   app.controller.ts
+│   │   app.module.ts
+│   │   constants.ts
+│   │   main.ts
+│   │   role.guard.spec.ts
+│   │   role.guard.ts
+│   └───auth
+|   |   |   (authentication module)
+│   └───decorators
+|   |   |   (custom decorators used in the application)
+│   └───example-auth
+|   |   |   (example controllers & providers demonstrating auth)
+│   └───example
+|   |   |   (example controllers & providers without auth)
+│   └───exceptions
+|   |   |   (custom exceptions used in the application)
+│   └───interfaces
+|   |   |   (custom interfaces used in the application)
+│   └───shared
+|   |   |   (shared module, binds all shared controllers, providers & modules)
+│   └───users
+|   |   |   (users module, encapsulates user functionality).
+└───src
+│   │   End to end tests for the backend.
+```
+
 ### Authentication
 [`Passport`](http://www.passportjs.org/) is used to provide authentication. In this code, authentication is implemented by means of an `auth` module, which can be found in `./src/auth`. The authentication module provides an `AuthGuard` ([more on Guards](https://docs.nestjs.com/guards)) that accepts a valid Passport authentication strategy.
 
