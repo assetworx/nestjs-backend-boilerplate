@@ -13,12 +13,14 @@ This repository contains a boilerplate NestJS based backend that by default runs
 Please execute these steps to run the NestJS boilerplate. Note that by default, we expect users to install dependencies with `yarn`. Hence, a yarn package lock file is provided in the repository. However, should you wish to use npm instead, this is possible by deleting the lockfile first and subsequently using `npm` commands.
 
 1. Clone the repository: `git clone git@github.com:gswrx/nestjs-backend-boilerplate.git`.
-2. Ensure that the NestJS CLI is installed globally with `npm`:
+2. Update the `Git` remotes of the cloned repository to point to your own repository.
+    - [Find out how here.](https://help.github.com/en/articles/changing-a-remotes-url)
+3. Ensure that the NestJS CLI is installed globally with `npm`:
     - `npm i -g @nestjs/cli`
-3. Ensure that the `node_modules` dependencies are installed in your `nestjs-backend-boilerplate` folder with either `npm` or `yarn`, preferably the latter:
+4. Ensure that the `node_modules` dependencies are installed in your `nestjs-backend-boilerplate` folder with either `npm` or `yarn`, preferably the latter:
     - `npm install`
     - `yarn install`
-4. Developer mode: start the backend by means of `npm` or `yarn`, preferably the latter:
+5. Developer mode: start the backend by means of `npm` or `yarn`, preferably the latter:
   	- `npm run start`
     - `yarn run start`
 
