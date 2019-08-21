@@ -24,6 +24,7 @@ export class AuthService {
     const user = await this.usersService.findUser(username);
     // Note that normally, you would use password hashing here.
     if (user && user.password === password) {
+      delete user.password;
       return user;
     }
     return null;
@@ -34,7 +35,7 @@ export class AuthService {
    * @param user user
    */
   async sign(user: IUser): Promise<IJwt> {
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { username: user.username, sub: user.userId, roles: user.roles };
     return {
       access_token: this.jwtService.sign(payload),
     };
