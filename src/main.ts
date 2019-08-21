@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { constants } from './constants';
 import * as helmet from 'helmet';
 import * as csurf from 'csurf';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   // Create the app
@@ -20,7 +21,9 @@ async function bootstrap() {
   // Enable Cross-origin resource sharing
   app.enableCors();
   // Enable CSURF aganst cross-site request forgery
-  app.use(csurf());
+  // Requires cookie parsing since we do not use any session store by default.
+  app.use(cookieParser());
+  app.use(csurf({ cookie: true }));
   // Start listening on port number defined in constants
   await app.listen(constants.httpPort);
 }
