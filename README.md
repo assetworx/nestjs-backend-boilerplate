@@ -26,7 +26,7 @@ Please execute these steps to run the NestJS boilerplate. Note that by default, 
 
 For production mode, see [Production build: Docker container](#production-build--docker-container).
 
-[Help, my `yarn` commands do not work!](https://yarnpkg.com/lang/en/docs/cli/install/)
+[Help, my `yarn` commands do not work!](https://yarnpkg.com/en/docs/install)
 
 ## Structure
 
