@@ -16,6 +16,8 @@ async function bootstrap() {
   // - xssFilter
   // more info: https://helmetjs.github.io/docs/
   app.use(helmet());
+  // Enable Cross-origin resource sharing
+  app.enableCors();
   // Start listening on port number defined in constants
   await app.listen(constants.httpPort);
 }
