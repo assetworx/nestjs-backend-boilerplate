@@ -9,6 +9,28 @@ This repository contains a boilerplate NestJS based backend that by default runs
   * [Production build: Docker container](#production-build--docker-container)
   * [License](#license)
 
+## Boilerplate walkthrough
+### Folder structure
+### Authentication and authorization
+### Security measures
+This boilerplate backend deploys various measures against security vulnerabilities. We use multiple packages for this:
+
+* `helmet`, which groups various security vulnerability mitigations.
+* `csurf`, which protects you against cross-site request forgery.
+* `cors`, for which we use NestJS's built-in facilities.
+
+These types of attacks are covered by these packages:
+
+* Cross origin resource sharing misuse
+* Cross-site request forgery
+* DNS Prefetch Control misuse
+* Clickjacking
+* Package-powered-by exploits
+* Navigating users away to HTTP once they are on HTTPS (by means of HSTS).
+* IE abuse.
+* MIME sniffing.
+* (Certain) XSS attacks.
+
 ## Running the backend boilerplate in developer mode
 Please execute these steps to run the NestJS boilerplate. Note that by default, we expect users to install dependencies with `yarn`. Hence, a yarn package lock file is provided in the repository. However, should you wish to use npm instead, this is possible by deleting the lockfile first and subsequently using `npm` commands.
 
@@ -27,10 +49,6 @@ Please execute these steps to run the NestJS boilerplate. Note that by default, 
 For production mode, see [Production build: Docker container](#production-build--docker-container).
 
 [Help, my `yarn` commands do not work!](https://yarnpkg.com/en/docs/install)
-
-## Structure
-
-To do.
 
 ## Production build: Docker container
 
