@@ -4,8 +4,11 @@ This repository contains a boilerplate NestJS based backend that by default runs
 ## Table of contents
 - [nestjs-backend-boilerplate](#nestjs-backend-boilerplate)
   * [Table of contents](#table-of-contents)
+  * [Boilerplate walkthrough](#boilerplate-walkthrough)
+    + [Folder structure](#folder-structure)
+    + [Authentication and authorization](#authentication-and-authorization)
+    + [Security measures](#security-measures)
   * [Running the backend boilerplate in developer mode](#running-the-backend-boilerplate-in-developer-mode)
-  * [Structure](#structure)
   * [Production build: Docker container](#production-build--docker-container)
   * [License](#license)
 
