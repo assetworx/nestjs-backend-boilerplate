@@ -128,7 +128,7 @@ For production mode, see [Production build: Docker container](#production-build-
 
 ### Production mode
 #### Harnessing the power of Docker
-This repository provides a Docker Compose file which is configured to start the backend at port `3000` together with an empty PostgreSQL database that runs on port `5432` and harnesses a `bridge` network to allow the backend to reach it. The API itself runs in [pm2](http://pm2.keymetrics.io/docs/usage/environment/).
+This repository provides a Docker Compose file which is configured to start the backend at port `3000` together with an empty PostgreSQL database that runs on port `5432` and harnesses a `bridge` network to allow the backend to reach it. The application itself runs in [pm2](http://pm2.keymetrics.io/docs/usage/environment/).
 
 In order to run this, you'll need [yarn](https://yarnpkg.com/en/docs/install) as well as [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
@@ -142,7 +142,7 @@ The backend should now be reachable at `http://localhost:3000`. A PostgreSQL dat
 Please edit the compose file providing the PostgreSQL database password or, preferably, add this to an `.env` file before running `docker-compose` commands.
 
 #### Running it elsewhere
-You are also free to run the API elsewhere, without Docker, e.g. directly on some host system. You may find the following pointers useful:
+You are also free to run the application elsewhere, without Docker, e.g. directly on some host system. You may find the following pointers useful:
 * `yarn build` transpiles the TypeScript backend code into executable JavaScript into the `./dist` folder.
 * You could then do something like:
   * `node ./dist/main.js` (if you provide the required environment variables `PORT` and `POSTGRES_CLIENTS` yourself with e.g. `dotenv`; we **discourage** this for production - [read why here](https://www.freecodecamp.org/news/you-should-never-ever-run-directly-against-node-js-in-production-maybe-7fdfaed51ec6/)).
