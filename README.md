@@ -8,7 +8,9 @@ This repository contains a boilerplate NestJS based backend that by default runs
   * [Table of contents](#table-of-contents)
   * [Boilerplate walkthrough](#boilerplate-walkthrough)
     + [Folder structure](#folder-structure)
-    + [Authentication and authorization](#authentication-and-authorization)
+    + [Authentication](#authentication)
+    + [Authorization](#authorization)
+    + [Examples of authentication and authorization](#examples-of-authentication-and-authorization)
     + [Security measures](#security-measures)
   * [Running the boilerplate](#running-the-boilerplate)
     + [Developer mode](#developer-mode)
@@ -17,7 +19,26 @@ This repository contains a boilerplate NestJS based backend that by default runs
 
 ## Boilerplate walkthrough
 ### Folder structure
-### Authentication and authorization
+### Authentication
+[`Passport`](http://www.passportjs.org/) is used to provide authentication. In this code, authentication is implemented by means of an `auth` module, which can be found in `./src/auth`. The authentication module provides an `AuthGuard` ([more on Guards](https://docs.nestjs.com/guards)) that accepts a valid Passport authentication strategy.
+
+Currently, two of the many available Passport authentication strategies are provided by default: `local` (i.e. username/password) authentication as well as `jwt`-based authentication.
+
+The `local` strategy is only used for one route: the login route, which transforms a `(username, password)` tuple into a valid [JSON Web Token](https://jwt.io/) should it be valid. _(In this boilerplate, validity is checked by means of a users list; obviously, in your project, you must connect to a database instead.)_. 
+
+For all other routes, it is advised to _not_ use `local` authentication simply because it returns the JWT. Rather, use the `JWT` based strategy, which currently accepts the JWT as an Authorization Bearer Token.
+
+Also feel free to implement other [Passport Strategies](http://www.passportjs.org/packages/) by creating your own [NestJS Auth Strategies](https://docs.nestjs.com/techniques/authentication).
+
+### Authorization
+Role-based authorization comes implemented by default. It has been created by means of a `RoleGuard`, which essentially checks in advance whether a certain user has the role that is required for passing the request to the route. If the user has no such role, the request is denied by means of a `HTTP 403 Forbidden` response, otherwise, the route is executed as intended.
+
+### Examples of authentication and authorization
+The `./example-auth/example-auth.controller` comes with examples of authentication and authorization:
+
+* The `getAuthStatus` method, which is accessible at `HTTP GET /example-auth/simple`, performs JWT-based authentication _but no authorization_ by means of the `AuthGuard('jwt')`.
+* The `getStrongAuthStatus` method, accessible at `HTTP GET /example-auth/strong`, performs **both** JWT-based authentication and role-based authorization: it implements an `AuthGuard('jwt')` _and_ the `RoleGuard`. More specifically, it only allows requests to be passed to the route if the user is of role `'admin'`. _(Note that multiple roles at once are supported; in that case, make it e.g. `@Routes('admin, 'normal')`)_ If all routes must be supported, fall back to the previous bullet point and remove the `RoleGuard` and `Routes` decorator altogether.
+
 ### Security measures
 This boilerplate backend deploys various measures against security vulnerabilities. We use multiple packages for this:
 
