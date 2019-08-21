@@ -138,7 +138,7 @@ To run it in production mode:
 * `docker-compose build` - build the Docker image for the backend
 * `docker-compose up -d` - run the database and backend in the background (`-d`).
 
-The backend should now be reachable at `http://localhost:5432`. A PostgreSQL database should now be accessible from the backend container at `host = database; port = 5432`.
+The backend should now be reachable at `http://localhost:3000`. A PostgreSQL database should now be accessible from the backend container at `host = database; port = 5432`.
 Please edit the compose file providing the PostgreSQL database password or, preferably, add this to an `.env` file before running `docker-compose` commands.
 
 #### Running it elsewhere
