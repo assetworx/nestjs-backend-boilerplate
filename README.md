@@ -146,7 +146,7 @@ You are also free to run the application elsewhere, without Docker, e.g. directl
 * `yarn build` transpiles the TypeScript backend code into executable JavaScript into the `./dist` folder.
 * You could then do something like:
   * `node ./dist/main.js` (if you provide the required environment variables `PORT` and `POSTGRES_CLIENTS` yourself with e.g. `dotenv`; we **discourage** this for production - [read why here](https://www.freecodecamp.org/news/you-should-never-ever-run-directly-against-node-js-in-production-maybe-7fdfaed51ec6/)).
-  * `pm2 ./dist/backend.js` if you provide the required environment variables `PORT` and `POSTGRES_CLIENTS` yourself.
+  * `pm2 ./dist/main.js` if you provide the required environment variables `PORT` and `POSTGRES_CLIENTS` yourself.
   * `pm2 ./dist/pm2.config.js` if you wish to run with the environment variables as configured for `pm2` usage.
 
 ## License
