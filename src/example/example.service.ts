@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IAppStatusMessage } from '../interfaces/appstatusmessage.interface';
-import { IAppRootMessage } from 'src/interfaces/approotmessage.interface';
+import { IMessage } from 'src/interfaces/message.interface';
 
 @Injectable()
 export class ExampleService {
@@ -8,7 +7,7 @@ export class ExampleService {
   /**
    * Get app root message
    */
-  getAppRootMessage(): IAppRootMessage {
+  getAppRootMessage(): IMessage {
     return {
       message: 'This is the application root.',
     };
@@ -17,7 +16,7 @@ export class ExampleService {
   /**
    * Get example app status
    */
-  getAppStatus(): IAppStatusMessage {
+  getAppStatus(): IMessage {
     return {
       message: 'Your example app works.',
     };

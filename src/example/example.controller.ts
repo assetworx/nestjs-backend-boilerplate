@@ -1,7 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { IAppRootMessage } from 'src/interfaces/approotmessage.interface';
 import { ExampleService } from './example.service';
-import { IAppStatusMessage } from 'src/interfaces/appstatusmessage.interface';
+import { IMessage } from 'src/interfaces/message.interface';
 
 @Controller('')
 export class ExampleController {
@@ -19,7 +18,7 @@ export class ExampleController {
    * Generate response for the application root route.
    */
   @Get()
-  showAppRoot(): IAppRootMessage {
+  showAppRoot(): IMessage {
     return this.exampleService.getAppRootMessage();
   }
 
@@ -27,7 +26,7 @@ export class ExampleController {
    * @method showAppStatus
    */
   @Get('status')
-  showAppStatus(): IAppStatusMessage {
+  showAppStatus(): IMessage {
     return this.exampleService.getAppStatus();
   }
 }
