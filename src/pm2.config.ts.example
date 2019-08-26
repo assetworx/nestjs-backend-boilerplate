@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
+import PostgresClients from '../src/config/postgres-clients';
 module.exports = {
     apps: [
         {
             env: {
+                MODE: 'production', // do not remove this
                 PORT: 80,
-                POSTGRES_CLIENTS: JSON.stringify({
-                    exampleDatabase: "postgres://postgres:example@database:5432/postgres?ssl=false",
-                }),
+                POSTGRES_CLIENTS: JSON.stringify(PostgresClients),
             },
-            name: "api",
-            script: "./dist/main.js",
+            name: 'api',
+            script: './dist/main.js',
             watch: true,
         },
     ],
