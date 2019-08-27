@@ -5,8 +5,7 @@ module.exports = {
         {
             env: {
                 MODE: 'production', // do not remove this
-                PORT: 80,
-                POSTGRES_CLIENTS: JSON.stringify(PostgresClients),
+                PORT: 80
             },
             name: 'api',
             script: './dist/main.js',
