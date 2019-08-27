@@ -140,7 +140,7 @@ Nice. But how to access pools? Let's find out. 👇
 ### Connecting to setup database clients
 Database connections are provided by the `PostgresPoolService` that is available at `./src/postgres-pool/postgres-pool.service.ts`. It runs from the `AppModule` and by consequence:
 
-* Initializes on startup globally as a result of dependency injection. You can thus easily inject the database pools in any other service whatsoever and have access to the configured pools. There is no connection overload, since dependency injected services only initialize once.
+* Initializes on startup globally benefiting from the principle of dependency injection. You can thus easily inject the database pools in any other service whatsoever and have access to the configured pools. There is no connection overload, since dependency injected services only initialize once.
 * On initialization, it automatically connects to the database clients provided in the configuration file (see 👆) and makes them publicly (readonly) available in `this.pools`.
 * If you thus wish to use the database pools the backend created based on your config, [inject the `PostgresPoolService Provider`](https://docs.nestjs.com/providers) into the class you'll wish to use the clients in, e.g. as `this.dbPoolService`. You can then access the pools with `this.dbPoolService.pools.<configurationKey>`, where `configurationKey` is the key from the key-value combination provided in your configuration file (in the example 👆 e.g. `exampleDatabase`).
 
