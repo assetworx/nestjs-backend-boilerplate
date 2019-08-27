@@ -32,3 +32,7 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Credentials not in Git :-)
+./src/config/postgres-clients.ts
+./src/pm2.config.ts
