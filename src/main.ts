@@ -1,12 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { constants } from './constants';
+import { constants } from './config/constants';
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   // Create the app
   const app = await NestFactory.create(AppModule);
+  const logger = new Logger();
   // Helmet security:
   // - dnsPrefetchControl
   // - frameguard
