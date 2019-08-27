@@ -129,9 +129,9 @@ In the example above, an `exampleDatabase` will be created for username `postgre
 Once they have been configured, the backend will attempt to create `Pools` ([what are Pools?](https://node-postgres.com/features/pooling)) for them on startup:
 
 ```
-[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Found 1 client(s) in configuration
-[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Setting up client pool for 'exampleDatabase' client
-[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Connecting to 'exampleDatabase' pool
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Found 1 client(s) in configuration.
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Setting up client pool for 'exampleDatabase' client.
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Connecting to 'exampleDatabase' pool.
 [Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Connected to 'exampleDatabase' pool - it is now available.
 ```
 
