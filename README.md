@@ -12,8 +12,9 @@ This repository contains a boilerplate NestJS based backend that by default runs
     + [Authorization](#authorization)
     + [Examples of authentication and authorization](#examples-of-authentication-and-authorization)
     + [Security measures](#security-measures)
+    + [Setting up database clients](#setting-up-database-clients)
+    + [Connecting to setup database clients](#connecting-to-setup-database-clients)
   * [Running the boilerplate](#running-the-boilerplate)
-    + [Providing database clients for the backend](#providing-database-clients-for-the-backend)
     + [Developer mode](#developer-mode)
     + [Production mode](#production-mode)
       - [Harnessing the power of Docker](#harnessing-the-power-of-docker)
@@ -40,12 +41,16 @@ project
 └───src
 │   │   app.controller.ts
 │   │   app.module.ts
-│   │   constants.ts
 │   │   main.ts
+│   │   pm2.config.ts.example
 │   │   role.guard.spec.ts
 │   │   role.guard.ts
 │   └───auth
 |   |   |   (authentication module)
+│   └───config
+|   |   |   (configuration files)
+│   │   │   constants.ts
+│   │   │   postgres-clients.ts.example
 │   └───decorators
 |   |   |   (custom decorators used in the application)
 │   └───example-auth
@@ -103,9 +108,43 @@ These types of attacks are covered by these packages:
 * MIME sniffing.
 * (Certain) XSS attacks.
 
+### Setting up database clients
+This repository natively supports connecting to multiple PostgreSQL databases by means of client pools. In the configuration file `./postgres-clients.ts`, you can add as many clients as you wish. Note that for reasons of security, the `.ts` file cannot be pushed to any repository; rather, an `.example` file is available to demonstrate the structure. Copy and paste the example file to the true `.ts` file, **but do not add any credentials you really use to the example file!**
+
+[Why not?](https://hackernoon.com/developers-are-unknowingly-posting-their-credentials-online-caa7626a6f84)
+
+The clients configuration file exports an object that maps connection URIs to client keys. It looks as follows:
+
+```
+const PostgresClients = {
+  exampleDatabase: 'postgres://postgres:example@database:5432/postgres?ssl=false',
+};
+export default PostgresClients;
+```
+
+A PostgreSQL connection URI must be interpreted as follows: `postgresql://[user[:password]@][IP/hostname][:port][/dbname][?param1=value1&...]`.
+
+In the example above, an `exampleDatabase` will be created for username `postgres`, password `example`, at hostname `database` (our Docker production setting) at port `5432`. The database we try to connect with is `postgres` and for testing reasons we disabled `ssl`.
+
+Once they have been configured, the backend will attempt to create `Pools` ([what are Pools?](https://node-postgres.com/features/pooling)) for them on startup:
+
+```
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Found 1 client(s) in configuration
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Setting up client pool for 'exampleDatabase' client
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Connecting to 'exampleDatabase' pool
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Connected to 'exampleDatabase' pool - it is now available.
+```
+
+Nice. But how to access pools? Let's find out. 👇
+
+### Connecting to setup database clients
+Database connections are provided by the `PostgresPoolService` that is available at `./src/postgres-pool/postgres-pool.service.ts'. It runs from the `AppModule` and by consequence:
+
+* Initializes on startup globally as a result of dependency injection. You can thus easily inject the database pools in any other service whatsoever and have access to the configured pools. There is no connection overload, since dependency injected services only initialize once.
+* On initialization, it automatically connects to the database clients provided in the configuration file (see 👆) and makes them publicly (readonly) available in `this.pools`.
+* If you thus wish to use the database pools the backend created based on your config, [inject the `PostgresPoolService Provider`](https://docs.nestjs.com/providers) into the class you'll wish to use the clients in, e.g. as `this.dbPoolService`. You can then access the pools with `this.dbPoolService.pools.<configurationKey>`, where `configurationKey` is the key from the key-value combination provided in your configuration file (in the example 👆 e.g. `exampleDatabase`).
+
 ## Running the boilerplate
-### Providing database clients for the backend
-Todo.
 
 ### Developer mode
 Please execute these steps to run the NestJS boilerplate. Note that by default, we expect users to install dependencies with `yarn`. Hence, a yarn package lock file is provided in the repository. However, should you wish to use npm instead, this is possible by deleting the lockfile first and subsequently using `npm` commands.
