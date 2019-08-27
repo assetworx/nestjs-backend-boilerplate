@@ -138,7 +138,7 @@ Once they have been configured, the backend will attempt to create `Pools` ([wha
 Nice. But how to access pools? Let's find out. 👇
 
 ### Connecting to setup database clients
-Database connections are provided by the `PostgresPoolService` that is available at `./src/postgres-pool/postgres-pool.service.ts'. It runs from the `AppModule` and by consequence:
+Database connections are provided by the `PostgresPoolService` that is available at `./src/postgres-pool/postgres-pool.service.ts`. It runs from the `AppModule` and by consequence:
 
 * Initializes on startup globally as a result of dependency injection. You can thus easily inject the database pools in any other service whatsoever and have access to the configured pools. There is no connection overload, since dependency injected services only initialize once.
 * On initialization, it automatically connects to the database clients provided in the configuration file (see 👆) and makes them publicly (readonly) available in `this.pools`.
