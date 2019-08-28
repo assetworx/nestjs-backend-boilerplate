@@ -1,12 +1,13 @@
-import { Injectable, LoggerService, Logger } from '@nestjs/common';
+import { Injectable, LoggerService, Logger, OnApplicationShutdown } from '@nestjs/common';
 import { constants } from '../config/constants';
 import { Pool } from 'pg';
+import { IPgPools } from 'src/interfaces/pgpools.interface';
 
 @Injectable()
-export class PostgresPoolService {
+export class PostgresPoolService implements OnApplicationShutdown {
 
   /** Instance variables */
-  public readonly pools: object;
+  public readonly pools: IPgPools;
   private readonly logger: Logger;
 
   /** Constructor */
@@ -45,6 +46,24 @@ export class PostgresPoolService {
       }
     } catch (e) {
       this.logger.error(`Error with PostgreSQL client config at ${constants.pathToPostgresClients}.`, constants.postgresBootstrapContext);
+    }
+  }
+
+  /** Close pools on application shutdown */
+  onApplicationShutdown(signal: string): void {
+    this.logger.warn(`Application shutdown signal observed in PostgreSQL Pool Service: ${signal}`, constants.postgresShutdownContext);
+    this.logger.warn(`Shutting down PostgreSQL pools`, constants.postgresShutdownContext);
+    if (this.pools && this.pools.length > 0) {
+      Object.keys(this.pools).forEach(pool => {
+        try {
+          this.pools[pool].end();
+          this.logger.log(`Successfully shutdown pool ${pool}.`, constants.postgresShutdownContext);
+        } catch (e) {
+          this.logger.error(`Error when closing pool ${pool}. Manually check shutdown! Error: ${e}`, constants.postgresShutdownContext);
+        }
+      });
+    } else {
+      this.logger.log('No PostgreSQL pools active, shutdown complete.', constants.postgresShutdownContext);
     }
   }
 

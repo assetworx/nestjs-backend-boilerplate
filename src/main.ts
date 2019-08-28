@@ -28,6 +28,8 @@ async function bootstrap() {
       max: constants.rateLimitMaxReqPerWindow,
     }),
   );
+  // Enable shutdown hooks
+  app.enableShutdownHooks();
   // Start listening on port number defined in constants
   await app.listen(constants.httpPort);
 }

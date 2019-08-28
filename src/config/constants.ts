@@ -8,6 +8,7 @@ export const constants = {
   // LOGGER CONTEXTS
   loggerBootstrapContext: 'GlobalBootstrap',
   postgresBootstrapContext: 'Postgres DB init',
+  postgresShutdownContext: 'Postgres DB shutdown',
   // OTHER CONSTANTS
   httpPort: 3000,
   pathToPostgresClients: '../config/postgres-clients.ts',
