@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ExampleService } from './example.service';
+import { IMessage } from '../interfaces/message.interface';
 
 describe('ExampleService', () => {
   let service: ExampleService;
@@ -12,7 +13,17 @@ describe('ExampleService', () => {
     service = module.get<ExampleService>(ExampleService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  describe('showAppRoot', () => {
+    it('should generate response for the application root route', async () => {
+      const result: IMessage = {message: 'This is the application root.'};
+      expect(await service.getAppRootMessage()).toStrictEqual(result);
+    });
+  });
+
+  describe('showAppStatus', () => {
+    it('should get example app status', async () => {
+      const result: IMessage = {message: 'Your example app works.'};
+      expect(await service.getAppStatus()).toStrictEqual(result);
+    });
   });
 });

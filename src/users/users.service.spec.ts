@@ -12,7 +12,15 @@ describe('UsersService', () => {
     service = module.get<UsersService>(UsersService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  describe('FindUser', () => {
+    it('should find a user', async () => {
+      const user: any = {
+        userId: 1,
+        username: 'example',
+        password: 'weakpass',
+        roles: ['normal'],
+      };
+      expect(await service.findUser('example')).toStrictEqual(user);
+    });
   });
 });
