@@ -19,7 +19,7 @@ export class ExampleAuthService {
   getStrongAuthAcceptedMessage(): IMessage {
     return {
       message: 'Successfully authenticated and authorized as admin.',
-    }
-  };
+    };
+  }
 
 }
