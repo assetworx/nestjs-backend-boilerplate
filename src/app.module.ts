@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ExampleAuthService } from './example-auth/example-auth.service';
 import { PostgresPoolService } from './postgres-pool/postgres-pool.service';
+import { AppLoggerService } from './logger/logger.service';
 
 @Module({
   imports: [SharedModule, AuthModule, UsersModule],
@@ -12,6 +13,7 @@ import { PostgresPoolService } from './postgres-pool/postgres-pool.service';
   providers: [
     ExampleAuthService,
     PostgresPoolService,
+    AppLoggerService,
   ],
 })
 export class AppModule {}

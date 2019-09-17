@@ -32,7 +32,9 @@
     "pg": "^7.12.1",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
-    "rxjs": "^6.3.3"
+    "rxjs": "^6.3.3",
+    "winston": "^3.2.1",
+    "winston-syslog": "^2.2.0"
   },
   "devDependencies": {
     "@nestjs/testing": "^6.0.0",

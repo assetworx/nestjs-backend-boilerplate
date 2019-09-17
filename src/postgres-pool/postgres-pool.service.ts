@@ -1,19 +1,18 @@
 import { Injectable, LoggerService, Logger, OnApplicationShutdown } from '@nestjs/common';
 import { constants } from '../config/constants';
 import { Pool } from 'pg';
-import { IPgPools } from 'src/interfaces/pgpools.interface';
+import { IPgPools } from '../interfaces/pgpools.interface';
+import { AppLoggerService } from '../logger/logger.service';
 
 @Injectable()
 export class PostgresPoolService implements OnApplicationShutdown {
 
   /** Instance variables */
   public readonly pools: IPgPools;
-  private readonly logger: Logger;
 
   /** Constructor */
-  constructor() {
+  constructor(public logger: AppLoggerService) {
     // Define utils
-    this.logger = new Logger();
     this.pools = {};
     // Set up connections to the pools on initialization of service
     this.bootstrap();

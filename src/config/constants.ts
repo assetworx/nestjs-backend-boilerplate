@@ -9,6 +9,11 @@ export const constants = {
   loggerBootstrapContext: 'GlobalBootstrap',
   postgresBootstrapContext: 'Postgres DB init',
   postgresShutdownContext: 'Postgres DB shutdown',
+  paperTrail: { // Do **NOT** use GSWRX papertrail based logging in a DEVELOPMENT setting!
+    host: process.env.PAPERTRAIL_HOST,
+    port: process.env.PAPERTRAIL_PORT,
+    appName: process.env.PAPERTRAIL_APP_NAME,
+  },
   // OTHER CONSTANTS
   httpPort: 3000,
   pathToPostgresClients: '../config/postgres-clients.ts',
