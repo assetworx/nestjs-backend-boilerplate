@@ -36,3 +36,4 @@ lerna-debug.log*
 # Credentials not in Git :-)
 /src/config/postgres-clients.ts
 /src/pm2.config.ts
+.env
