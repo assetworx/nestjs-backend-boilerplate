@@ -78,7 +78,7 @@ The `local` strategy is only used for one route: the login route, which transfor
 
 For all other routes, it is advised to _not_ use `local` authentication simply because login returns a JWT and usernames/passwords should be provided as infrequently as possible. Rather, use the `JWT` based strategy, which currently accepts the JWT as an Authorization Bearer Token.
 
-**Important: generate jwt secret with (in bash)**
+**Important: generate jwt secret with (bash)**
 ```bash
 openssl rand 256 | base64
 ```
