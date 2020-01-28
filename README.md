@@ -78,6 +78,11 @@ The `local` strategy is only used for one route: the login route, which transfor
 
 For all other routes, it is advised to _not_ use `local` authentication simply because login returns a JWT and usernames/passwords should be provided as infrequently as possible. Rather, use the `JWT` based strategy, which currently accepts the JWT as an Authorization Bearer Token.
 
+**Important: generate jwt secret with (in bash)**
+```bash
+openssl rand 256 | base64
+```
+
 Also feel free to implement other [Passport Strategies](http://www.passportjs.org/packages/) by creating your own [NestJS Auth Strategies](https://docs.nestjs.com/techniques/authentication).
 
 ### Authorization
