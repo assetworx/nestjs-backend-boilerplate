@@ -14,6 +14,7 @@ This repository contains a boilerplate NestJS based backend that by default runs
     + [Security measures](#security-measures)
     + [Setting up database clients](#setting-up-database-clients)
     + [Connecting to setup database clients](#connecting-to-setup-database-clients)
+      - [Example for connecting to Pools](#example-for-connecting-to-pools)
   * [Running the boilerplate](#running-the-boilerplate)
     + [Developer mode](#developer-mode)
     + [Production mode](#production-mode)
