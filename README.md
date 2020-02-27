@@ -145,9 +145,42 @@ Nice. But how to access pools? Let's find out. 👇
 ### Connecting to setup database clients
 Database connections are provided by the `PostgresPoolService` that is available at `./src/postgres-pool/postgres-pool.service.ts`. It runs from the `AppModule` and by consequence:
 
-* Initializes on startup globally benefiting from the principle of dependency injection. You can thus easily inject the database pools in any other service whatsoever and have access to the configured pools. There is no connection overload, since dependency injected services only initialize once.
-* On initialization, it automatically connects to the database clients provided in the configuration file (see 👆) and makes them publicly (readonly) available in `this.pools`.
+* Initializes on startup globally benefiting from the principle of dependency injection. You can thus easily inject the database pools in any other service whatsoever and have access to the configured pools.
+* On initialization, it automatically provides the pool information (see 👆) and makes them publicly (readonly) available in `this.pools` for connection later (see 👇).
 * If you thus wish to use the database pools the backend created based on your config, [inject the `PostgresPoolService Provider`](https://docs.nestjs.com/providers) into the class you'll wish to use the clients in, e.g. as `this.dbPoolService`. You can then access the pools with `this.dbPoolService.pools.<configurationKey>`, where `configurationKey` is the key from the key-value combination provided in your configuration file (in the example 👆 e.g. `exampleDatabase`).
+* An example for setting up a connection based on a pool defined in the `PostgresPoolService` can be found below.
+* **Make sure to release clients immediately after use, to keep your pool sane!**
+
+#### Example for connecting to Pools
+```
+// Check if pool exists and was initialized properly.
+if (this.pgPoolService && this.pgPoolService.pools && this.pgPoolService.pools.exampleDatabase) {
+
+  // Connect to the pool
+  this.pgPoolService.pools.exampleDatabase.connect().then((client) => {
+
+    // Check if an error has been reported.
+    if (!client) {
+      this.logger.error(`Error on connecting to 'exampleDatabase' pool: no client.`, constants.postgresBootstrapContext);
+      return false;
+    }
+
+    // No error: do a select for the current database
+    return client.query('SELECT current_database() AS connected_to_db;')
+              .then((res) => {
+                this.logger.log(`Success on 'exampleDatabase' pool connection test - connected to ${
+                    res.rows && res.rows[0] ? res.rows[0].connected_to_db : ''}.`, constants.postgresBootstrapContext);
+                client.release();
+              })
+              .catch((err) => {
+                this.logger.error(`Error on connecting to 'exampleDatabase' pool: '${err}'.`, constants.postgresBootstrapContext);
+                client.release();
+              });
+
+  });
+
+}
+```
 
 ## Running the boilerplate
 

@@ -35,10 +35,34 @@ export class PostgresPoolService implements OnApplicationShutdown {
         });
         this.logger.log(`Connecting to '${clientName}' pool.`, constants.postgresBootstrapContext);
         try {
-          pool.connect().then(() => {
-            this.logger.log(`Connected to '${clientName}' pool - it is now available.`, constants.postgresBootstrapContext);
-            this.pools[clientName] = pool;
+
+          // Register pool
+          this.pools[clientName] = pool;
+          this.logger.log(`Set up the '${clientName}' pool - testing connection...`, constants.postgresBootstrapContext);
+
+          // Test the connection
+          pool.connect().then((client) => {
+
+            // Check if an error has been reported.
+            if (!client) {
+              this.logger.error(`Error on connecting to '${clientName}' pool: no client.`, constants.postgresBootstrapContext);
+              return false;
+            }
+
+            // No error: do a select for the current database
+            return client.query('SELECT current_database() AS connected_to_db;')
+                    .then((res) => {
+                      this.logger.log(`Success on '${clientName}' pool connection test - connected to ${
+                          res.rows && res.rows[0] ? res.rows[0].connected_to_db : ''}.`, constants.postgresBootstrapContext);
+                      client.release();
+                    })
+                    .catch((err) => {
+                      this.logger.error(`Error on connecting to '${clientName}' pool: '${err}'.`, constants.postgresBootstrapContext);
+                      client.release();
+                    });
+
           });
+
         } catch (e) {
           this.logger.error(`Error connecting to '${clientName}' pool: ${e}.`, constants.postgresBootstrapContext);
         }
