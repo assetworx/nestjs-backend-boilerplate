@@ -20,6 +20,7 @@ This repository contains a boilerplate NestJS based backend that by default runs
     + [Production mode](#production-mode)
       - [Harnessing the power of Docker](#harnessing-the-power-of-docker)
       - [Running it elsewhere](#running-it-elsewhere)
+      - [Debug logs in production mode](#debug-logs-in-production-mode)
   * [License](#license)
 
 ## Boilerplate walkthrough
@@ -226,6 +227,11 @@ You are also free to run the application elsewhere, without Docker, e.g. directl
   * `node ./dist/main.js` (if you provide the required environment variables `PORT` and `POSTGRES_CLIENTS` yourself with e.g. `dotenv`; we **discourage** this for production - [read why here](https://www.freecodecamp.org/news/you-should-never-ever-run-directly-against-node-js-in-production-maybe-7fdfaed51ec6/)).
   * `pm2 ./dist/main.js` if you provide the required environment variables `PORT` and `POSTGRES_CLIENTS` yourself.
   * `pm2 ./dist/pm2.config.js` if you wish to run with the environment variables as configured for `pm2` usage.
+
+#### Debug logs in production mode
+Please note that all `debug` logs written with `AppLoggerService` logging are written locally, but are masked in Papertrail. Instead, you will see the following log:
+
+`Debug logs are masked. Please remove them from production environment.`
 
 ## License
 The `nestjs-backend-boilerplate` is licensed under the [MIT License](./LICENSE). You are free to use the boilerplate code commercially, to modify it, to distribute it and to use it privately. However, this requires that the limitations and other license conditions as provided by the license are respected.

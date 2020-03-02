@@ -73,7 +73,7 @@ export class AppLoggerService implements LoggerService {
     if (this.logger instanceof Logger) {
       this.logger.debug(message, context);
     } else {
-      this.logger.debug(`[${context}] ${message}`);
+      this.logger.debug(`[${context}] Debug logs are masked. Please remove them from production environment.`);
     }
   }
 
