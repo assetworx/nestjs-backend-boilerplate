@@ -21,6 +21,8 @@ This repository contains a boilerplate NestJS based backend that by default runs
       - [Harnessing the power of Docker](#harnessing-the-power-of-docker)
       - [Running it elsewhere](#running-it-elsewhere)
       - [Debug logs in production mode](#debug-logs-in-production-mode)
+  * [Known issues and solutions](#known-issues-and-solutions)
+    + [NestJS scheduler TypeError: common_1.applyDecorators is not a function](#nestjs-scheduler-typeerror--common-1applydecorators-is-not-a-function)
   * [License](#license)
 
 ## Boilerplate walkthrough
@@ -232,6 +234,33 @@ You are also free to run the application elsewhere, without Docker, e.g. directl
 Please note that all `debug` logs written with `AppLoggerService` logging are written locally, but are masked in Papertrail. Instead, you will see the following log:
 
 `Debug logs are masked. Please remove them from production environment.`
+
+## Known issues and solutions
+### NestJS scheduler TypeError: common_1.applyDecorators is not a function
+When using the NestJS `Scheduler` functionality, you may run into this error:
+
+```
+ return common_1.applyDecorators(common_1.SetMetadata(schedule_constants_1.SCHEDULE_CRON_OPTIONS, Object.assign(Object.assign({}, options), { cronTime })), common_1.SetMetadata(schedule_constants_1.SCHEDULER_NAME, name), common_1.SetMetadata(schedule_constants_1.SCHEDULER_TYPE, scheduler_type_enum_1.SchedulerType.CRON));
+                    ^
+TypeError: common_1.applyDecorators is not a function
+```
+
+The solution here is as follows:
+
+1. Install the `nest-schedule` package. Ensure that all `imports` import from `nest-schedule` instead of `@nestjs/schedule`.
+2. Create a separate class, e.g. `AuthSchedule`, and ensure that it `extends NestSchedule` (see example below).
+3. Add this class to the `providers` section of the respective `module`, e.g. `AuthModule`.
+
+Then, scheduling should work nicely.
+
+Example for schedule class:
+
+```
+import { NestSchedule, Cron } from 'nest-schedule';
+
+@Injectable()
+export class LocalIamSchedule extends NestSchedule {
+```
 
 ## License
 The `nestjs-backend-boilerplate` is licensed under the [MIT License](./LICENSE). You are free to use the boilerplate code commercially, to modify it, to distribute it and to use it privately. However, this requires that the limitations and other license conditions as provided by the license are respected.
