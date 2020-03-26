@@ -403,9 +403,9 @@
     tslib "1.11.1"
 
 "@nestjs/swagger@^4.2.4":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.5.0.tgz#8935541062775d06aa759b7148c4e72e8765d47f"
-  integrity sha512-G4v/RFd/307zLCY1QAVGrT5hkYmxXGRQafM2KhhIvQu364CaYTCkp1G7H7h0JhGvkc3ArKuraeJ+Glld8j4k6w==
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.5.1.tgz#ffdd585580f5493ea18760ec05f3b1f89725f7d6"
+  integrity sha512-P7jaAUjGEviBQO67wNaAy7zinetsPbl/6DfJiIS7I9f9tevGQ1hTj49uLLDYuuTecK2JOt3RbEefFdrpD475Rw==
   dependencies:
     lodash "4.17.15"
     path-to-regexp "3.2.0"
