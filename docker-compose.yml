@@ -18,6 +18,12 @@ services:
       - api-db-bridge
     environment:
       POSTGRES_PASSWORD: example
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+
+volumes:
+    postgres_db:
+
 networks:
   api-db-bridge:
     driver: bridge
