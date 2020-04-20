@@ -386,10 +386,10 @@
     "@types/jsonwebtoken" "8.3.7"
     jsonwebtoken "8.5.1"
 
-"@nestjs/mapped-types@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-0.0.1.tgz#ff82149301d3d08bcacae2b392d85e24e5bee02b"
-  integrity sha512-4G4Ui7Sj0UqXiZsUFk/6cPD3K7uZEFSElzkOftaJ3/lXW+HUi1/vfWXabF53qrzO1enTRQDxt1plDbP6SsqXEg==
+"@nestjs/mapped-types@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/mapped-types/-/mapped-types-0.0.3.tgz#7b50206935452e74a270ed9a07ad05a6305b0b42"
+  integrity sha512-PKxWOVaMyvj9/82afLpMZ/+Pb5JacCURRP/FY/tCDtsoS+MABeQGj2oqbtH4uQUiL4n+H0IigvQGHWQ1zPPknA==
 
 "@nestjs/passport@^6.1.0":
   version "6.2.0"
@@ -408,11 +408,11 @@
     tslib "1.11.1"
 
 "@nestjs/swagger@^4.2.4":
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.5.2.tgz#0cbf3e8fd6322f10626c0905f991632a27fe78ee"
-  integrity sha512-ZqzgxaL+S1ftUgvh11F57r9w6rYMRnA4w858Uk2zDPpFHFojdH7QC7jrkwgI+tGDWg4e54+AVJvHvmckgQ+6yw==
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.5.3.tgz#efa489724b42e09aa3022abfd9b0660ecb91e721"
+  integrity sha512-qYMuL+HwtAUkAtS2ylFOlFCir3OSsgtB5pgTHvpbCqmo6LzqW3mjr4s5BxBBvg6DKQyQ0uYY4uhSIuFlqf7UMQ==
   dependencies:
-    "@nestjs/mapped-types" "0.0.1"
+    "@nestjs/mapped-types" "0.0.3"
     lodash "4.17.15"
     path-to-regexp "3.2.0"
 
@@ -577,9 +577,9 @@
   integrity sha512-FwI9gX75FgVBJ7ywgnq/P7tw+/o1GUbtP0KzbtusLigAOgIgNISRK0ZPl4qertvXSIE8YbsVJueQ90cDt9YYyw==
 
 "@types/node@*":
-  version "13.13.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.0.tgz#30d2d09f623fe32cde9cb582c7a6eda2788ce4a8"
-  integrity sha512-WE4IOAC6r/yBZss1oQGM5zs2D7RuKR6Q+w+X2SouPofnWn+LbCqClRyhO3ZE7Ix8nmFgo/oVuuE01cJT2XB13A==
+  version "13.13.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.1.tgz#1ba94c5a177a1692518bfc7b41aec0aa1a14354e"
+  integrity sha512-uysqysLJ+As9jqI5yqjwP3QJrhOcUwBjHUlUxPxjbplwKoILvXVsmYWEhfmAQlrPfbRZmhJB007o4L9sKqtHqQ==
 
 "@types/node@11.13.4":
   version "11.13.4"
