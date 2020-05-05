@@ -492,11 +492,12 @@
   integrity sha512-aRnpPa7ysx3aNW60hTiCtLHlQaIFsXFCgQlpakNgDNVFzbtusSY8PwjAQgRWfSk0ekNoBjO51eQRB6upA9uuyw==
 
 "@types/express-serve-static-core@*":
-  version "4.17.5"
-  resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.5.tgz#a00ac7dadd746ae82477443e4d480a6a93ea083c"
-  integrity sha512-578YH5Lt88AKoADy0b2jQGwJtrBxezXtVe/MBqWXKZpqx91SnC0pVkVCcxcytz3lWW+cHBYDi3Ysh0WXc+rAYw==
+  version "4.17.6"
+  resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.6.tgz#ec825455acb075e7fc804f4f7b7734e043003f43"
+  integrity sha512-U2oynuRIB17GIbEdvjFrrEACOy7GQkzsX7bPEBz1H41vZYEU4j0fLL97sawmHDwHUXpUQDBMHIyM9vejqP9o1A==
   dependencies:
     "@types/node" "*"
+    "@types/qs" "*"
     "@types/range-parser" "*"
 
 "@types/express@*":
@@ -620,9 +621,9 @@
     "@types/express" "*"
 
 "@types/qs@*":
-  version "6.9.1"
-  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.1.tgz#937fab3194766256ee09fcd40b781740758617e7"
-  integrity sha512-lhbQXx9HKZAPgBkISrBcmAcMpZsmpe/Cd/hY7LGZS5OfkySUBItnPZHgQPssWYUET8elF+yCFBbP1Q0RZPTdaw==
+  version "6.9.2"
+  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.2.tgz#faab98ec4f96ee72c829b7ec0983af4f4d343113"
+  integrity sha512-a9bDi4Z3zCZf4Lv1X/vwnvbbDYSNz59h3i3KdyuYYN+YrLjSeJD0dnphdULDfySvUv6Exy/O0K6wX/kQpnPQ+A==
 
 "@types/range-parser@*":
   version "1.2.3"
