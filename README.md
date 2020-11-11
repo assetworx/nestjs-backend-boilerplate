@@ -1,4 +1,6 @@
-# nestjs-backend-boilerplate
+<img src="./readme-assets/logo.png" width="175" align="right">
+
+# GSWRX nestjs-backend-boilerplate
 **Boilerplate code for NestJS backends.**
 
 This repository contains a boilerplate NestJS based backend that by default runs ExpressJS. It is used in the majority of GSWRX projects to ensure that there is substantial overlap between backends within our innovation projects. However, it is licensed to be used in an open source way.
@@ -122,32 +124,37 @@ This repository natively supports connecting to multiple PostgreSQL databases by
 
 [Why not?](https://hackernoon.com/developers-are-unknowingly-posting-their-credentials-online-caa7626a6f84)
 
-The clients configuration file exports an object that maps connection URIs to client keys. It looks as follows:
+The clients configuration file exports an object that maps connection details to client keys. It looks as follows by default and can be adapted (by adding other objects or changing credential details).
 
 ```
 const PostgresClients = {
-  exampleDatabase: 'postgres://postgres:example@database:5432/postgres?ssl=false',
+  boilerplateDb: {
+    user: process.env.PSQL_USER,
+    host: process.env.PSQL_HOST,
+    db: process.env.PSQL_DB,
+    password: process.env.PSQL_PASSWORD,
+    port: process.env.PSQL_PORT,
+  },
 };
 export default PostgresClients;
+
 ```
 
-A PostgreSQL connection URI must be interpreted as follows: `postgresql://[user[:password]@][IP/hostname][:port][/dbname][?param1=value1&...]`.
+In the example above, `.env`-provided credentials will be used to connect to the database.
 
-In the example above, an `exampleDatabase` will be created for username `postgres`, password `example`, at hostname `database` (our Docker production setting) at port `5432`. The database we try to connect with is `postgres` and for testing reasons we disabled `ssl`.
-
-Once they have been configured, the backend will attempt to create `Pools` ([what are Pools?](https://node-postgres.com/features/pooling)) for them on startup:
+Once they have been configured, the backend will attempt to create `Pools` ([what are Pools?](https://node-postgres.com/features/pooling)) for them on startup. Note that Pool creation in the [postgres-pool.service.ts](./src/postgres-pool/postgres-pool.service.ts) file involves adding a `.crt` file for setting up an SSL connecting to your database.
 
 ```
 [Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Found 1 client(s) in configuration.
-[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Setting up client pool for 'exampleDatabase' client.
-[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Connecting to 'exampleDatabase' pool.
-[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Connected to 'exampleDatabase' pool - it is now available.
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Setting up client pool for 'boilerplateDb' client.
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Connecting to 'boilerplateDb' pool.
+[Nest] 21360   - 2019-08-27 10:54   [Postgres DB init] Connected to 'boilerplateDb' pool - connected to <databasename>.
 ```
 
 Nice. But how to access pools? Let's find out. 👇
 
 ### Connecting to setup database clients
-Database connections are provided by the `PostgresPoolService` that is available at `./src/postgres-pool/postgres-pool.service.ts`. It runs from the `AppModule` and by consequence:
+Database connections are provided by the `PostgresPoolService` that is available at [postgres-pool.service.ts](./src/postgres-pool/postgres-pool.service.ts). It runs from the `AppModule` and by consequence:
 
 * Initializes on startup globally benefiting from the principle of dependency injection. You can thus easily inject the database pools in any other service whatsoever and have access to the configured pools.
 * On initialization, it automatically provides the pool information (see 👆) and makes them publicly (readonly) available in `this.pools` for connection later (see 👇).
