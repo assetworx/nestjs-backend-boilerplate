@@ -3,6 +3,7 @@ import { constants } from '../config/constants';
 import { Pool } from 'pg';
 import { IPgPools } from '../interfaces/pgpools.interface';
 import { AppLoggerService } from '../logger/logger.service';
+import * as fs from 'fs';
 
 @Injectable()
 export class PostgresPoolService implements OnApplicationShutdown {
@@ -31,7 +32,15 @@ export class PostgresPoolService implements OnApplicationShutdown {
       for (const clientName of clientKeys) {
         this.logger.log(`Setting up client pool for '${clientName}' client.`, constants.postgresBootstrapContext);
         const pool = new Pool({
-          connectionString: clients[clientName],
+          user: clients[clientName].user,
+          host: clients[clientName].host,
+          database: clients[clientName].db,
+          password: clients[clientName].password,
+          port: clients[clientName].port,
+          ssl: {
+            rejectUnauthorized: true,
+            ca: fs.readFileSync('/usr/src/app/dist/db.crt').toString(), // Change into filepath of your CRT file.
+          },
         });
         this.logger.log(`Connecting to '${clientName}' pool.`, constants.postgresBootstrapContext);
         try {
@@ -69,6 +78,7 @@ export class PostgresPoolService implements OnApplicationShutdown {
       }
     } catch (e) {
       this.logger.error(`Error with PostgreSQL client config at ${constants.pathToPostgresClients}.`, constants.postgresBootstrapContext);
+      this.logger.error(e, constants.postgresBootstrapContext);
     }
   }
 

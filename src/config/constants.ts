@@ -16,5 +16,5 @@ export const constants = {
   },
   // OTHER CONSTANTS
   httpPort: 3000,
-  pathToPostgresClients: '../config/postgres-clients.ts',
+  pathToPostgresClients: '../config/postgres-clients.js',
 };
