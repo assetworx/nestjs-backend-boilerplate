@@ -6,7 +6,7 @@
 This repository contains a boilerplate NestJS based backend that by default runs ExpressJS. It is used in the majority of GSWRX projects to ensure that there is substantial overlap between backends within our innovation projects. However, it is licensed to be used in an open source way.
 
 ## Table of contents
-- [nestjs-backend-boilerplate](#nestjs-backend-boilerplate)
+- [GSWRX nestjs-backend-boilerplate](#gswrx-nestjs-backend-boilerplate)
   * [Table of contents](#table-of-contents)
   * [Boilerplate walkthrough](#boilerplate-walkthrough)
     + [Folder structure](#folder-structure)
@@ -25,6 +25,7 @@ This repository contains a boilerplate NestJS based backend that by default runs
       - [Debug logs in production mode](#debug-logs-in-production-mode)
   * [Known issues and solutions](#known-issues-and-solutions)
     + [NestJS scheduler TypeError: common_1.applyDecorators is not a function](#nestjs-scheduler-typeerror--common-1applydecorators-is-not-a-function)
+    + [Error with PostgreSQL client config: ENOENT /usr/src/app/dist/db.crt](#error-with-postgresql-client-config--enoent--usr-src-app-dist-dbcrt)
   * [License](#license)
 
 ## Boilerplate walkthrough
@@ -268,6 +269,22 @@ import { NestSchedule, Cron } from 'nest-schedule';
 @Injectable()
 export class LocalIamSchedule extends NestSchedule {
 ```
+
+### Error with PostgreSQL client config: ENOENT /usr/src/app/dist/db.crt
+An error like this indicates that you have not configured the path to the `db.crt` file in your [postgres-pool.service.ts](./src/postgres-pool/postgres-pool.service.ts) file.
+
+```
+[Nest] 22680   - 2020-11-11 18:49:57   Error with PostgreSQL client config at ../config/postgres-clients.js. +2ms
+Postgres DB init
+[Nest] 22680   - 2020-11-11 18:49:57   Object:
+{
+  "errno": -4058,
+  "syscall": "open",
+  "code": "ENOENT",
+  "path": "/usr/src/app/dist/db.crt"
+}
+ +2ms
+ ```
 
 ## License
 The `nestjs-backend-boilerplate` is licensed under the [MIT License](./LICENSE). You are free to use the boilerplate code commercially, to modify it, to distribute it and to use it privately. However, this requires that the limitations and other license conditions as provided by the license are respected.
