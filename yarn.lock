@@ -438,9 +438,9 @@
     tslib "2.1.0"
 
 "@nestjs/swagger@^4.7.2":
-  version "4.7.13"
-  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.7.13.tgz#2640c8f5e30e98dda5072f12255d481f71faa6ce"
-  integrity sha512-KqFjkx6NOhRVRU4EBu42es/SjopqDwnAfgBCUPer+rKoMUCDMp/hF6dRoH7Z874whPho9pzGcAXBNMxo4/AGdg==
+  version "4.7.14"
+  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.7.14.tgz#0874406ab3a94b8e50ff677eb7699f41ad89ee6e"
+  integrity sha512-UXan4WqzYeJvoAOFe6rYD+DSX7l9DmH3CNoo9j6+PemEu4RaMmWENwvxox0obAp5vJhxvCCU7cvfT75LTad7MA==
   dependencies:
     "@nestjs/mapped-types" "0.3.0"
     lodash "4.17.20"
